@@ -1,9 +1,10 @@
+from tkinter import *
 import tkinter as tk
 
 class tela():
     def __init__(self):
         self.tela=tk.Tk()
-        self.tela.title("Calculadora")
+        self.tela.title("Calculadora Tk")
         self.tela.resizable(width=False, height=False)
 
         self.Res=""
@@ -20,10 +21,10 @@ class tela():
             self.auxResultado.set(self.Res)
 
 
+
         def calcular(self):
             Digitos=[]
             Oper=[]
-            Num=[]
             for i in self.Res:
                 if i.isdigit():
                     Digitos.append(i)
@@ -35,6 +36,8 @@ class tela():
             NumStr="".join(Digitos)
             NumStr=NumStr.split("*")
             print(NumStr)
+
+
 
 
             #operações
@@ -54,11 +57,8 @@ class tela():
 
 
             if Oper[0]=="%":
-                ResTotal=round(int(NumStr[0])/int(NumStr[1]))
+                ResTotal=int(NumStr[0])/int(NumStr[1])
 
-
-            
-                
 
 
             self.auxResultado.set(str(ResTotal))
@@ -144,13 +144,6 @@ class tela():
         self.bt9.grid(row=3, column=3, padx=2, pady=2)
 
 
-        #Botão ,
-        self.auxBt10=tk.StringVar()
-        self.auxBt10.set(",")
-        self.bt10=tk.Button(self.tela, textvariable=self.auxBt10, width=self.WIDTH, height=self.HEIGHT, bg= "#FED8B1",font=self.FONTE, command=lambda : atualizar(self.auxBt10.get()))
-        self.bt10.grid(row=4, column=1, padx=2, pady=2)
-
-
         #Botão -
         self.auxBt11=tk.StringVar()
         self.auxBt11.set("-")
@@ -186,15 +179,7 @@ class tela():
         self.bt15.grid(row=4, column=3, padx=2, pady=2)
 
 
-
-
-
-
         self.tela.mainloop()
-
-
-
-
 
 
 tela()
