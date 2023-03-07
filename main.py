@@ -16,7 +16,10 @@ class tela():
 
         #atualiza o display da tela
         def atualizar(auxBt):
-            self.Res+=auxBt
+            if auxBt == '<':
+                print(self.Res)
+            else:    
+                self.Res+=auxBt
             print(self.Res)
             self.auxResultado.set(self.Res)
 
@@ -26,7 +29,7 @@ class tela():
             Digitos=[]
             Oper=[]
             for i in self.Res:
-                if i.isdigit():
+                if i.isdigit() or i == '.':
                     Digitos.append(i)
                 else:
                     Oper.append(i)
@@ -42,22 +45,22 @@ class tela():
 
             #operações
             if Oper[0]=="+":
-                ResTotal=int(NumStr[0])+int(NumStr[1])
+                ResTotal=float(NumStr[0])+float(NumStr[1])
 
 
 
             if Oper[0]=="-":
-                ResTotal=int(NumStr[0])-int(NumStr[1])
+                ResTotal=float(NumStr[0])-float(NumStr[1])
 
 
 
             if Oper[0]=="X":
-                ResTotal=int(NumStr[0])*int(NumStr[1])
+                ResTotal=float(NumStr[0])*float(NumStr[1])
 
 
 
             if Oper[0]=="%":
-                ResTotal=int(NumStr[0])/int(NumStr[1])
+                ResTotal=float(NumStr[0])/float(NumStr[1])
 
 
 
@@ -144,6 +147,13 @@ class tela():
         self.bt9.grid(row=3, column=3, padx=2, pady=2)
 
 
+        #Botão .
+        self.auxBt10=tk.StringVar()
+        self.auxBt10.set(".")
+        self.bt10=tk.Button(self.tela, textvariable=self.auxBt10, width=self.WIDTH, height=self.HEIGHT, bg= "#FED8B1", font=self.FONTE, command= lambda: atualizar(self.auxBt10.get()))
+        self.bt10.grid(row=4, column=1, padx=2, pady=2)
+
+
         #Botão -
         self.auxBt11=tk.StringVar()
         self.auxBt11.set("-")
@@ -165,7 +175,7 @@ class tela():
         self.bt13.grid(row=3, column=4, padx=2, pady=2)
 
 
-        #Botão /
+        #Botão %
         self.auxBt14=tk.StringVar()
         self.auxBt14.set("%")
         self.bt14=tk.Button(self.tela, textvariable=self.auxBt14, width=self.WIDTH, height=self.HEIGHT, bg= "light blue",font=self.FONTE, command=lambda : atualizar(self.auxBt14.get()))
@@ -177,6 +187,14 @@ class tela():
         self.auxBt15.set("=")
         self.bt15=tk.Button(self.tela, textvariable=self.auxBt15, width=self.WIDTH, height=self.HEIGHT, bg= "#FED8B1", font=self.FONTE, command=lambda : calcular(self))
         self.bt15.grid(row=4, column=3, padx=2, pady=2)
+
+        
+        #Botão <
+        self.auxBt16=tk.StringVar()
+        self.auxBt16.set("<")
+        self.bt16=tk.Button(self.tela, textvariable=self.auxBt16, width=self.WIDTH, height=self.HEIGHT, bg= "#FED8B1", font=self.FONTE, command=lambda : atualizar(self.auxBt16.get()))
+        self.bt16.grid(row=1, column=5, padx=2, pady=2)
+
 
 
         self.tela.mainloop()
